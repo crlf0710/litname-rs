@@ -65,11 +65,9 @@ struct LitNameItemArgs {
 
 impl syn::parse::Parse for LitNameItemArgs {
     fn parse(input: syn::parse::ParseStream) -> syn::parse::Result<Self> {
-        let attr_content;
-        let _attr_paren_token = syn::parenthesized!(attr_content in input);
-        let mut fn_lit_name: Vec<syn::LitStr> = vec![attr_content.parse()?];
-        while !attr_content.is_empty() {
-            fn_lit_name.push(attr_content.parse()?);
+        let mut fn_lit_name: Vec<syn::LitStr> = vec![input.parse()?];
+        while !input.is_empty() {
+            fn_lit_name.push(input.parse()?);
         }
         if !input.is_empty() {
             return Err(input.lookahead1().error());
