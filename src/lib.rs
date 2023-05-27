@@ -14,6 +14,8 @@ fn escape_char(ch: char) -> impl Iterator<Item = char> {
         '<' => "_lt_".chars(),
         '>' => "_gt_".chars(),
         '=' => "_eq_".chars(),
+        '+' => "_plus_".chars(),
+        '-' => "_minus_".chars(),
         _ => "__".chars(),
     }
 }
